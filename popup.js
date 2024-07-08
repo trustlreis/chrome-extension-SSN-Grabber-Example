@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Function to update the popup with SSN fields
     function updatePopup(ssnFields) {
         const ssnList = document.getElementById('ssn-list');
         ssnList.innerHTML = '';
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Get SSN fields from the background script
     chrome.runtime.getBackgroundPage((backgroundPage) => {
         const ssnFields = backgroundPage.getSsnFields();
         updatePopup(ssnFields);
