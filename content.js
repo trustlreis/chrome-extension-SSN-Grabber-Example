@@ -20,4 +20,6 @@ function findSSNFields() {
 const ssnFields = findSSNFields();
 if (ssnFields.length > 0) {
     chrome.runtime.sendMessage({ ssnFields: ssnFields });
+} else {
+    console.log("no ssn fields")
 }
