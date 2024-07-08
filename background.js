@@ -3,10 +3,14 @@ chrome.runtime.onInstalled.addListener(() => {
     console.log("Extension installed");
 });
 
-// Listen for messages from content scripts
+let ssnFields = [];
+
+// Store SSN fields from content scripts
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.ssnFields) {
-        console.log('SSN Fields:', message.ssnFields);
-        // Process or store the SSN fields as needed
+        ssnFields = message.ssnFields;
+        console.log('SSN Fields:', ssnFields);
+    } else if (message.action === 'getSSNFields') {
+        sendResponse({ ssnFields });
     }
 });

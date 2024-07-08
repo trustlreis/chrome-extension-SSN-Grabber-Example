@@ -10,9 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Get SSN fields from the background script
-    chrome.runtime.getBackgroundPage((backgroundPage) => {
-        const ssnFields = backgroundPage.getSsnFields();
-        updatePopup(ssnFields);
+    // Request SSN fields from the background script
+    chrome.runtime.sendMessage({ action: 'getSSNFields' }, (response) => {
+        if (response && response.ssnFields) {
+            updatePopup(response.ssnFields);
+        }
     });
 });
